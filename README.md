@@ -51,4 +51,5 @@ Sophia - Front End SEM
 
 ## API or Seed Data
 * We will be using Seed Data to populate the Users and the Services
+* STRETCH GOAL: we will need to implement with Stripe API!
 * We will be using 10 sample Users w/o Freelancer access, 5 sample Users w/Freelancer access, and 10 services
