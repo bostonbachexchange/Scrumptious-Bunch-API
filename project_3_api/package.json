@@ -1,13 +1,13 @@
 {
-  "name": "express-auth-mongoose-boilerplate",
+  "name": "freelancr_api",
   "version": "1.0.0",
-  "description": "Auth boilerplate for mongoose express using token auth",
+  "description": " FREELANCR is the hottest new Freelancing Platform that will blow Fiverr out of the water.",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Timm Schoenborn",
+  "author": "Jacob Clapper, Alys Cooper, Hayden Moyes, Sophia Navarro",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
