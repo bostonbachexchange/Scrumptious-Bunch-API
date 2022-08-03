@@ -1,3 +1,5 @@
+Everything is awesome when you're part of a team
+
 # express-auth-template
 
 A template for starting projects with `express` as an API. Includes
