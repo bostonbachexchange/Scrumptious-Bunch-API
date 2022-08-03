@@ -1,7 +1,8 @@
 // import dependencies
 const mongoose = require('mongoose')
+const { Schema, model } = mongoose
 
-const serviceSchema = new mongoose.Schema({
+const serviceSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -14,7 +15,7 @@ const serviceSchema = new mongoose.Schema({
     },
     owner: {
         type: Schema.Types.ObjectId,
-        required: true,
+        // required: true,
         ref: 'User'
     },
     rate: {
@@ -26,4 +27,4 @@ const serviceSchema = new mongoose.Schema({
     timestamps: true
 })
 
-module.exports = serviceSchema
+module.exports = model('Service', serviceSchema)
