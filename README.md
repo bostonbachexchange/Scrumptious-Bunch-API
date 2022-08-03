@@ -16,6 +16,7 @@ Sophia - Front End SEM
 ### As a user (both freelancer and user)…
 * As a user, I want to be able to create a user account/sign up
 * As a user, I want to be able to sign in to my user account 
+* As a user, I want to be able to update my user profile.
 * As a user, I want to be able to change my user password 
 * As a user, I want to be able to sign out of my user account
 * As a user, I want to be able to view my user information
@@ -42,55 +43,11 @@ Sophia - Front End SEM
 * As a freelance user, I want to add multiple images to each of my services
 * As a user, I want to be able to leave a review (subdocument)
 * As a freelancer user, I want to be able to list turnaround times for services that it is applicable for.
+* As a user, I want to be able to use Stripe functionality at checkout.
 
 ## ERD 
 <img src="./project_3_api/images/ERDv2.png" width="600px" alt="ERD" />
 
-## Wireframes
-
-HEADER VIEW - not logged in
-<img src="./project_3_api/images/HEADER mockup - not logged in.png" width="600px" alt="Header view - not logged in" />
-
-HEADER VIEW - logged in
-<img src="./project_3_api/images/HEADER mockup - all pages - logged in.png" width="600px" alt="HEADER VIEW - logged in" />
-
-Log In/Sign Up Page
-<img src="./project_3_api/images/Login.png" width="600px" alt="Log In/Sign Up Page" />
-
-Sign Up Page
-<img src="./project_3_api/images/Sign Up.png" width="600px" alt="Sign Up Page" />
-
-Finish Signup Page
-<img src="./project_3_api/images/Finish your profile.png" width="600px" alt="Finish Signup Page" />
-
-Update Profile
-<img src="./project_3_api/images/Profile Edit.png" width="600px" alt="Update Profile" />
-
-Freelancer Home page - view enrolled by services
-<img src="./project_3_api/images/FREELANCR Home Page.png" width="600px" alt="Freelancer Home page - view enrolled by services" />
-
-View all Freelancers
-<img src="./project_3_api/images/FREELANCR INDEX PAGE.png" width="600px" alt="View all Freelancers" />
-
-Show Freelancer Page
-<img src="./project_3_api/images/FREELANCR INDEX PAGE (2).png" width="600px" alt="Show Freelancer Page" />
-
-Edit my Page - Freelancer Logged In
-<img src="./project_3_api/images/FREELANCR INDEX PAGE - if visited by owner.png" width="600px" alt="Edit my Page - Freelancer Logged In" />
-
-Add Services Page
-<img src="./project_3_api/images/Assignments Add.png" width="600px" alt="Add Services Page" />
-
-All Services - index
-<img src="./project_3_api/images/SERVICE INDEX PAGE.png" width="600px" alt="All Services - index" />
-
-View Service - Show
-<img src="./project_3_api/images/SERVICE Show PAGE.png" width="600px" alt="View Service - Show" />
-
-Edit Service
-<img src="./project_3_api/images/Update Service.png" width="600px" alt="Edit Service" />
-
- 
 
 ## API or Seed Data
 * We will be using Seed Data to populate the Users and the Services
