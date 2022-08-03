@@ -27,9 +27,29 @@ Sophia - Front End SEM
 * they go here
 ### USER route table
 
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/sign-in`             | `users#signin`    |
+| PATCH  | `/change-password/`    | `users#changepw`  |
+| DELETE | `/sign-out/`           | `users#signout`   |
+
 ### SERVICE route table
 
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| GET    | `/view-service`        | `services#view`   |
+| POST   | `/create-service`      | `services#create`    |
+| PATCH  | `/edit-service/`       | `services#edit`  |
+| DELETE | `/delete-service/`     | `services#delete`   |
+
 ### STRETCH: COMMENT route table
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| GET    | `/view-comment`        | `comments#view`   |
+| POST   | `/create-comment`      | `comments#create`    |
+| PATCH  | `/edit-comment/`       | `comments#edit`  |
+| DELETE | `/delete-comment/`     | `comments#delete`   |
 
 ## API or Seed Data
 * We will be using Seed Data to populate the Users and the Services
