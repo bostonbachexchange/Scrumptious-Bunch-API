@@ -27,13 +27,10 @@ router.post('/profiles/:userId', requireToken, removeBlanks, (req, res, next) =>
         .then(user => {
             console.log('this is the user', user)
             console.log('this is the profile', profile)
-
             // push the profile into the user's profiles array
             user.profile.push(profile)
-
             // save the user
             return user.save()
-            
         })
         // send the newly updated pet as json
         .then(profile => res.status(201).json({ profile: profile }))
@@ -42,8 +39,8 @@ router.post('/profiles/:userId', requireToken, removeBlanks, (req, res, next) =>
 
 // UPDATE a Profile
 // PATCH /profiles/<user_id>/<profile_id>
-router.patch('/profile/:profileId/:profileId', requireToken, removeBlanks, (req, res, next) => {
-    // get the toy and the pet ids saved to variables
+router.patch('/profile/:userId/:profileId', requireToken, removeBlanks, (req, res, next) => {
+    // get the user and the profile ids saved to variables
     const userId = req.params.userId
     const profileId = req.params.profileId
 
@@ -52,7 +49,8 @@ router.patch('/profile/:profileId/:profileId', requireToken, removeBlanks, (req,
         .then(handle404)
         .then(user => {
             // single out the toy (.id is a subdoc method to find something in an array of subdocs)
-            const theProfile = user.profiles.id(profileId)
+            const theProfile = user.profile._id(profileId)
+            console.log(theProfile)
             // make sure the user sending the request is the owner
             requireOwnership(req, user)
             // update the toy with a subdocument method
@@ -64,33 +62,35 @@ router.patch('/profile/:profileId/:profileId', requireToken, removeBlanks, (req,
         .catch(next)
 })
 
-// DELETE a Profile
-// DELETE /profiles/<profile_id>/<profile_id>
-router.delete('/profiles/:userId/:profileId', requireToken, (req, res, next) => {
-    // get the toy and the pet ids saved to variables
-    const userId = req.params.userId
-    const profileId = req.params.profileId
-    // then we find the pet
-    Use.findById(userId)
-        // handle a 404
-        .then(handle404)
-        // do stuff with the toy(in this case, delete it)
-        .then(user => {
-            // we can get the subdoc the same way as update
-            const theProfile = user.profiles.id(profileId)
-            // require that the user deleting this toy is the user's owner
-            requireOwnership(req, user)
-            // call remove on the subdoc
-            theToy.remove()
-
-            // return the saved user
-            return user.save()
-        })
-        // send 204 no content status
-        .then(() => res.sendStatus(204))
-        // handle errors
-        .catch(next)
-})
+// // DELETE a Profile
+// // DELETE /profiles/<user_id>/<profile_id>
+// router.delete('/profile/:userId/:profileId', requireToken, (req, res, next) => {
+//     // get the user and the profile ids saved to variables
+//     const userId = req.params.userId
+//     const profileId = req.params.profileId
+//     // then we find the pet
+//     User.findById(userId)
+//         // handle a 404
+//         .then(handle404)
+//         // do stuff with the toy(in this case, delete it)
+//         .then(user => {
+//             console.log('here is the user: \n', user)
+//             console.log('here is the profile: \n', user.profile)
+//             // we can get the subdoc the same way as update
+//             const theProfile = user.profile.id(profileId)
+//             console.log('here is theProfile', theProfile)
+//             // require that the user deleting this toy is the user's owner
+//             requireOwnership(req, user)
+//             // call remove on the subdoc
+//             theProfile.remove()
+//             // return the saved user
+//             return user.save()
+//         })
+//         // send 204 no content status
+//         .then(() => res.sendStatus(204))
+//         // handle errors
+//         .catch(next)
+// })
 
 // export the router
 module.exports = router
