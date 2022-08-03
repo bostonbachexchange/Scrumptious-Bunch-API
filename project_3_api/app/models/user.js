@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema(
 	{
+		name: {
+			type: String,
+			required: true,
+		},
 		email: {
 			type: String,
 			required: true,
@@ -11,6 +15,13 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		isFreelancer: {
+			type: Boolean,
+			required: true,
+			default: false
+		},
+		profile: profileSchema,
+		// enrolledClasses: [serviceSchema],
 		token: String,
 	},
 	{

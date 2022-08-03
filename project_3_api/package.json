@@ -1,7 +1,7 @@
 {
-  "name": "freelancr_api",
+  "name": "freelancr-api",
   "version": "1.0.0",
-  "description": " FREELANCR is the hottest new Freelancing Platform that will blow Fiverr out of the water.",
+  "description": "Freelancr API for GA Project 3 Group 1",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
