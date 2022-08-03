@@ -2,11 +2,7 @@
 
 // creating a base name for the mongodb
 // REPLACE THE STRING WITH YOUR OWN DATABASE NAME
-<<<<<<< HEAD
 const mongooseBaseName = 'freelancr_api'
-=======
-const mongooseBaseName = 'freelancr-api'
->>>>>>> user-update-and-api-boilerplate-update
 
 // create the mongodb uri for development and test
 const database = {
