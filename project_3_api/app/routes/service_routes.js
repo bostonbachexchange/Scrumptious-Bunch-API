@@ -105,7 +105,7 @@ router.delete('/services/:id', requireToken, (req, res, next) => {
 		.then(handle404)
 		.then((service) => {
 			// throw an error if current user doesn't own `example`
-			requireOwnership(req, exserviceample)
+			requireOwnership(req, service)
 			// delete the example ONLY IF the above didn't throw
 			service.deleteOne()
 		})
