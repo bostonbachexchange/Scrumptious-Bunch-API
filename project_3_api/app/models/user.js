@@ -21,7 +21,9 @@ const userSchema = new mongoose.Schema(
 			default: false
 		},
 		profile: profileSchema,
-		// enrolledClasses: [serviceSchema],
+		//enrolledClasses: {
+		//	type: [serviceSchema],
+		//},
 		token: String,
 	},
 	{

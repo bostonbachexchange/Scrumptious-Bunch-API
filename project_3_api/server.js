@@ -7,6 +7,7 @@ const cors = require('cors')
 const exampleRoutes = require('./app/routes/example_routes')
 const userRoutes = require('./app/routes/user_routes')
 const serviceRoutes = require('./app/routes/service_routes')
+const freelancerRoutes = require('./app/routes/freelancer_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -68,7 +69,11 @@ app.use(requestLogger)
 // register route files
 app.use(exampleRoutes)
 app.use(userRoutes)
+<<<<<<< HEAD
 app.use(serviceRoutes)
+=======
+app.use(freelancerRoutes)
+>>>>>>> FreelancerViewShowAndIndex
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
