@@ -16,9 +16,9 @@ const router = express.Router()
 
 // POST -> create a profile
 // POST /profile/<user_id>
-router.post('/profiles/:userId', requireToken, removeBlanks, (req, res, next) => {
+router.post('/profile/:userId', requireToken, removeBlanks, (req, res, next) => {
     // get our profile from req.body
-    const profile = req.body.profile
+    const prof = req.body.profile
     // get our pet's id from req.params.petId
     const userId = req.params.userId
     // find the pet
@@ -26,14 +26,17 @@ router.post('/profiles/:userId', requireToken, removeBlanks, (req, res, next) =>
         .then(handle404)
         .then(user => {
             console.log('this is the user', user)
-            console.log('this is the profile', profile)
+            console.log('this is the profile', prof)
+            console.log('this is the user.profile', user.profile)
+        
             // push the profile into the user's profiles array
-            user.profile.push(profile)
+            user.profile = prof
+            console.log('this is the new user.profile', user.profile)
             // save the user
             return user.save()
         })
         // send the newly updated pet as json
-        .then(profile => res.status(201).json({ profile: profile }))
+        .then(user => res.status(201).json({ user: user }))
         .catch(next)
 })
 
@@ -42,14 +45,15 @@ router.post('/profiles/:userId', requireToken, removeBlanks, (req, res, next) =>
 router.patch('/profile/:userId/:profileId', requireToken, removeBlanks, (req, res, next) => {
     // get the user and the profile ids saved to variables
     const userId = req.params.userId
-    const profileId = req.params.profileId
+    // const profileId = req.params.profileId
 
     // find our user
     User.findById(userId)
         .then(handle404)
         .then(user => {
             // single out the toy (.id is a subdoc method to find something in an array of subdocs)
-            const theProfile = user.profile._id(profileId)
+            console.log(user.profile._id)
+            const theProfile = user.profile[0]._id
             console.log(theProfile)
             // make sure the user sending the request is the owner
             requireOwnership(req, user)
@@ -60,6 +64,18 @@ router.patch('/profile/:userId/:profileId', requireToken, removeBlanks, (req, re
         })
         .then(() => res.sendStatus(204))
         .catch(next)
+})
+
+// SHOW
+// GET /pets/5a7db6c74d55bc51bdf39793
+router.get('/profile/:id', (req, res, next) => {
+	// req.params.id will be set based on the `:id` in the route
+	User.findById(req.params.id)
+		.then(handle404)
+		// if `findById` is succesful, respond with 200 and "pet" JSON
+		.then((user) => res.status(200).json({ user: user.toObject() }))
+		// if an error occurs, pass it to the handler
+		.catch(next)
 })
 
 // // DELETE a Profile
