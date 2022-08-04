@@ -18,7 +18,7 @@ mongoose.connect(db, {
     .then(() => {
         // first we remove all of the services
         // here we can add something to make sure that we only delete services without an owner
-        Service.deleteMany()
+        Service.deleteMany( {owner: null} )
             .then(deletedServices => {
                 console.log('Here are the deleted services: \n', deletedServices);
                 // the next step is to use our startServices array to create our seeded services
