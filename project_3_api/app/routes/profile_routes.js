@@ -89,7 +89,7 @@ router.delete('/profile', requireToken, (req, res, next) => {
             console.log('here is the profile: \n', user.profile)
 
             // we can get the subdoc the same way as update
-             const theProfile = user.profile
+            const theProfile = user.profile
             // call remove on the subdoc
             theProfile.remove()
             console.log('user without profile?', user)
