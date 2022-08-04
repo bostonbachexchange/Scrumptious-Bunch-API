@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const profileSchema = require('./profile')
-const serviceSchema = require('./service')
+// const serviceSchema = require('./service')
 const userSchema = new mongoose.Schema(
 	{
 		name: {
@@ -22,9 +22,7 @@ const userSchema = new mongoose.Schema(
 			default: false
 		},
 		profile: profileSchema,
-		enrolledClasses: {
-			type: [serviceSchema],
-		},
+		enrolledClasses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service' }],
 		token: String,
 	},
 	{

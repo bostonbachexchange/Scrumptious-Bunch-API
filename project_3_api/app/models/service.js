@@ -1,6 +1,6 @@
 // import dependencies
 const mongoose = require('mongoose')
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
 const serviceSchema = new Schema({
     name: {
@@ -27,4 +27,4 @@ const serviceSchema = new Schema({
     timestamps: true
 })
 
-module.exports = serviceSchema
+module.exports = model('Service', serviceSchema)
