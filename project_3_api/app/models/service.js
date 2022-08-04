@@ -13,9 +13,18 @@ const serviceSchema = new Schema({
         required: true,
         default: ''
     },
+    description: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    location: {
+        type: String,
+        default: ''
+    },
     owner: {
         type: Schema.Types.ObjectId,
-        // required: true,
+        required: true,
         ref: 'User'
     },
     rate: {
