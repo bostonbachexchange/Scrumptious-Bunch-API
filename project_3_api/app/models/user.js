@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const profileSchema = require('./profile')
+const serviceSchema = require('./service')
 const userSchema = new mongoose.Schema(
 	{
 		name: {
@@ -21,9 +22,9 @@ const userSchema = new mongoose.Schema(
 			default: false
 		},
 		profile: profileSchema,
-		//enrolledClasses: {
-		//	type: [serviceSchema],
-		//},
+		enrolledClasses: {
+			type: [serviceSchema],
+		},
 		token: String,
 	},
 	{
