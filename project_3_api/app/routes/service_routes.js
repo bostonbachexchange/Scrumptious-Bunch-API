@@ -55,7 +55,7 @@ router.get('/services/user/:userId', (req, res, next) => {
 	const userId = req.params.userId
 	Service.find( {owner: userId})
 		.then(handle404)
-		.then((services) => res.status(200).json({ services: services.toObject() }))
+		.then((services) => res.status(200).json({ services: services }))
 		.catch(next)
 })
 ///
