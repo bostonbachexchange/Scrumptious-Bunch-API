@@ -98,6 +98,8 @@ router.patch('/services/:id', requireToken, removeBlanks, (req, res, next) => {
 		.catch(next)
 })
 
+
+
 // DESTROY
 // DELETE /services/5a7db6c74d55bc51bdf39793
 router.delete('/services/:id', requireToken, (req, res, next) => {

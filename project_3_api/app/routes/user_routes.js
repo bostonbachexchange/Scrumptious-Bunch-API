@@ -5,7 +5,12 @@ const crypto = require('crypto')
 const passport = require('passport')
 // bcrypt docs: https://github.com/kelektiv/node.bcrypt.js
 const bcrypt = require('bcrypt')
-
+// we'll use this function to send 404 when non-existant document is requested
+// this is a collection of methods that help us detect situations when we need
+// to throw a custom error
+const customErrors = require('../../lib/custom_errors')
+const handle404 = customErrors.handle404
+const removeBlanks = require('../../lib/remove_blank_fields')
 // see above for explanation of "salting", 10 rounds is recommended
 const bcryptSaltRounds = 10
 
@@ -16,6 +21,8 @@ const BadParamsError = errors.BadParamsError
 const BadCredentialsError = errors.BadCredentialsError
 
 const User = require('../models/user')
+const Service = require('../models/service')
+const { ServerClosedEvent } = require('mongodb')
 
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
@@ -135,6 +142,39 @@ router.patch('/change-password', requireToken, (req, res, next) => {
 		// pass any errors along to the error handler
 		.catch(next)
 })
+
+////////////////////////
+// Add a service to users enrolled services
+////////////////////////
+// PATCH /user/<service_id>/<user_id>
+router.patch('/user/:serviceId/:userId', requireToken, removeBlanks, (req, res, next) => {
+    // get the service and the user ids saved to variables
+    const serviceId = req.params.serviceId
+    const userId = req.params.userId
+	let enrolledService;
+	Service.findById(serviceId)
+		.then(handle404)
+		.then(service => {
+			console.log('here is service', service)
+			enrolledService = service
+			console.log('here is the enrolledService', enrolledService)
+			return;
+		})
+		.catch(next)
+    // find our User
+    User.findById(userId)
+        .then(handle404)
+        .then(user => {
+            // single out the toy (.id is a subdoc method to find something in an array of subdocs)
+            user.enrolledClasses.push(enrolledService)
+            console.log('here is the user after the push', user)
+
+            return user.save()
+        })
+        .then(() => res.sendStatus(204))
+        .catch(next)
+})
+////////////////////////
 
 router.delete('/sign-out', requireToken, (req, res, next) => {
 	// create a new random token for the user, invalidating the current one
