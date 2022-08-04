@@ -62,7 +62,7 @@ router.get('/services/:id', (req, res, next) => {
 // this WILL require authentication
 router.post('/services', requireToken, (req, res, next) => {
 	// set owner of new service to be current user
-	req.body.service.owner = req.user.id
+	req.body.service.owner = req.user._id
 
 	Service.create(req.body.service)
 		// respond to succesful `create` with status 201 and JSON of new "example"

@@ -165,7 +165,6 @@ router.patch('/user/:serviceId/:userId', requireToken, removeBlanks, (req, res, 
     User.findById(userId)
         .then(handle404)
         .then(user => {
-            // single out the toy (.id is a subdoc method to find something in an array of subdocs)
             user.enrolledClasses.push(enrolledService)
             console.log('here is the user after the push', user)
 
