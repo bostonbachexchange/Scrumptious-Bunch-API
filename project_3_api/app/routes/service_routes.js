@@ -5,6 +5,7 @@ const passport = require('passport')
 
 // pull in Mongoose model for examples
 const Service = require('../models/service')
+const User = require('../models/user')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
@@ -53,9 +54,18 @@ router.get('/services/user/:userId', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	// will we also need to get all services with them as owner?
 	const userId = req.params.userId
+	let freelancerArray = [];
+	User.findById(userId)
+		.then(handle404)
+		// this will make it so that the user is always at freelancerArray[0]
+		.then((user) => freelancerArray.push(user))
+		.catch(err => console.log(err))
 	Service.find( {owner: userId})
 		.then(handle404)
-		.then((services) => res.status(200).json({ services: services }))
+		.then((services) => {
+			freelancerArray.push(services)
+			res.status(200).json({ services: freelancerArray })
+		})
 		.catch(next)
 })
 ///
