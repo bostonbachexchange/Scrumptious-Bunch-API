@@ -50,7 +50,7 @@ router.get('/services', (req, res, next) => {
 ////////////
 //  will not require authentication
 // GET SPECIFIC USER / FREELANCER SERVICES
-router.get('/services/user/:userId', (req, res, next) => {
+router.get('/services/freelancer/:userId', (req, res, next) => {
 	// req.params.id will be set based on the `:id` in the route
 	// will we also need to get all services with them as owner?
 	const userId = req.params.userId

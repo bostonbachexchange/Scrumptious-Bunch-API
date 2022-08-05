@@ -54,10 +54,36 @@ router.get('/freelancers/:id', (req, res, next) => {
 	User.findById(req.params.id)
 		.then(handle404)
 		// if `findById` is succesful, respond with 200 and "example" JSON
-		.then((user) => res.status(200).json({ user: user.toObject() }))
+		.then((freelancer) => res.status(200).json({ freelancer: freelancer.toObject() }))
 		// if an error occurs, pass it to the handler
 		.catch(next)
 })
+
+
+////////////
+// SHOW
+////////////
+//  will not require authentication
+// GET SPECIFIC USER / FREELANCER SERVICES
+router.get('/freelancer/services/:userId', (req, res, next) => {
+	// req.params.id will be set based on the `:id` in the route
+	// will we also need to get all services with them as owner?
+	const userId = req.params.userId
+	let freelancerArray = [];
+	User.findById(userId)
+		.then(handle404)
+		// this will make it so that the user is always at freelancerArray[0]
+		.then((user) => freelancerArray.push(user))
+		.catch(err => console.log(err))
+	Service.find( {owner: userId})
+		.then(handle404)
+		.then((services) => {
+			freelancerArray.push(services)
+			res.status(200).json({ services: freelancerArray })
+		})
+		.catch(next)
+})
+///
 
 
 
