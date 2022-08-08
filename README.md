@@ -12,31 +12,6 @@ Hayden - Hype Manager
 Jacob - Back End SEM
 Sophia - Front End SEM
 
-## User Stories
-### As a user (both freelancer and user)…
-* As a user, I want to be able to create a user account/sign up
-* As a user, I want to be able to sign in to my user account 
-* As a user, I want to be able to update my user profile.
-* As a user, I want to be able to change my user password 
-* As a user, I want to be able to sign out of my user account
-* As a user, I want to be able to view my user information
-* As a user, I want to be able to choose an avatar image.
-* As a user, I want to see ALL Freelancers
-* As a user, I want to see ONE Freelancer and view it by itself 
-* As a user, I want to be able to view ALL classes and services (regardless of freelancer) 
-* As a user, I want to be able to select ONE class/service and view it by itself
-* As a user, I want to be able to “purchase” a specific service made by a freelancer
-* As a user, I want to be able to “purchase” a specific service made by a freelancer
-
-### As a freelancer user…
-* As a freelancer user… (user.isAFreelancer = true)
-* As a freelancer user, I want to be able to create services (multiple)
-* As a freelancer user, I want to be able to edit MY services (multiple)
-* As a freelancer user, I want to be able to delete MY services (multiple)
-* As a freelancer user, I want to be able to view a page containing all of my services
-* As a freelancer user, I want to be able to write an about-me.
-* As a freelancer user, I want to be able to see users who have enrolled in my service.
-
 
 ## STRETCH GOALS…
 * As a user, I want to be able to search ALL services through a search bar
@@ -46,8 +21,35 @@ Sophia - Front End SEM
 * As a user, I want to be able to use Stripe functionality at checkout.
 
 ## ERD 
-<img src="./project_3_api/images/ERDv2.png" width="600px" alt="ERD" />
+<img src="./images/ERDv2.png" width="600px" alt="ERD" />
 
+## ROUTE TABLES 
+* they go here
+### USER route table
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/sign-in`             | `users#signin`    |
+| PATCH  | `/change-password/`    | `users#changepw`  |
+| DELETE | `/sign-out/`           | `users#signout`   |
+
+### SERVICE route table
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| GET    | `/view-service`        | `services#view`   |
+| POST   | `/create-service`      | `services#create`    |
+| PATCH  | `/edit-service/`       | `services#edit`  |
+| DELETE | `/delete-service/`     | `services#delete`   |
+
+### STRETCH: COMMENT route table
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| GET    | `/view-comment`        | `comments#view`   |
+| POST   | `/create-comment`      | `comments#create`    |
+| PATCH  | `/edit-comment/`       | `comments#edit`  |
+| DELETE | `/delete-comment/`     | `comments#delete`   |
 
 ## API or Seed Data
 * We will be using Seed Data to populate the Users and the Services
