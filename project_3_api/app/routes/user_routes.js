@@ -167,7 +167,6 @@ router.patch('/user/:serviceId/:userId', requireToken, removeBlanks, (req, res, 
         .then(user => {
             user.enrolledClasses.push(enrolledService)
             console.log('here is the user after the push', user)
-
             return user.save()
         })
         .then(() => res.sendStatus(204))

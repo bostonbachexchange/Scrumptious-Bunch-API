@@ -6,9 +6,10 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node ./app/models/seed.js"
+    "seed": "node ./app/models/seed.js",
+    "seed_user": "node ./app/models/user_seed.js"
   },
-  "author": "Jacob Clapper, Alys Cooper, Hayden Moyes, Sophia Navarro",
+  "author": "Jacob Clapper, Alys Cooper, Hayden Moyes",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
