@@ -9,7 +9,13 @@ const userRoutes = require('./app/routes/user_routes')
 const serviceRoutes = require('./app/routes/service_routes')
 const freelancerRoutes = require('./app/routes/freelancer_routes')
 const profileRoutes = require('./app/routes/profile_routes')
+const stripeRoutes = require('./app/routes/stripe_routes')
+// define keys from Stripe API
+const PUBLISHABLE_KEY = 'pk_test_51LTRITK06RXOssaSuz8mnqvs5eK7kKYHrz4CZteRgFQYmkWPcEVc4gfdRSTSPQyCAZt7YRy2IOJKikJbiic626Nh00VhCpKX7f'
+const SECRET_KEY = 'sk_test_51LTRITK06RXOssaSljCv8UTj4c8LJDNbb2oiLDCS9UNPpcZNSmDL1B07J0WHxoxMizNV4sztNFy9JeOjv8yKnrNi00xH6wracw'
 
+// require Stripe
+const stripe = require('stripe')(SECRET_KEY)
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -74,7 +80,7 @@ app.use(userRoutes)
 app.use(serviceRoutes)
 app.use(freelancerRoutes)
 app.use(profileRoutes)
-
+app.use(stripeRoutes)
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
 // passed any error messages from them

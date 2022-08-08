@@ -20,15 +20,8 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			default: false
 		},
-<<<<<<< HEAD
-		profile: profileSchema,
-		//enrolledClasses: {
-		//	type: [serviceSchema],
-		//},
-=======
 		profile: [profileSchema],
 		// enrolledClasses: [serviceSchema],
->>>>>>> MakeProfileSubDoc
 		token: String,
 	},
 	{
