@@ -45,30 +45,6 @@ router.get('/services', (req, res, next) => {
 		.catch(next)
 })
 
-////////////
-// SHOW
-////////////
-//  will not require authentication
-// GET SPECIFIC USER / FREELANCER SERVICES
-router.get('/services/freelancer/:userId', (req, res, next) => {
-	// req.params.id will be set based on the `:id` in the route
-	// will we also need to get all services with them as owner?
-	const userId = req.params.userId
-	let freelancerArray = [];
-	User.findById(userId)
-		.then(handle404)
-		// this will make it so that the user is always at freelancerArray[0]
-		.then((user) => freelancerArray.push(user))
-		.catch(err => console.log(err))
-	Service.find( {owner: userId})
-		.then(handle404)
-		.then((services) => {
-			freelancerArray.push(services)
-			res.status(200).json({ services: freelancerArray })
-		})
-		.catch(next)
-})
-///
 
 // SHOW
 // GET /services/5a7db6c74d55bc51bdf39793

@@ -44,8 +44,9 @@ router.patch('/updateProfile', requireToken, removeBlanks, (req, res, next) => {
         .then(handle404)
         .then(user => {
             // make sure the user sending the request is the owner
-            user.profile = req.body.profile
-            console.log('user.profile', user.profile)
+            const profile = user.profile
+            profile.set(req.body.profile)
+            console.log('user.profile', profile)
             // return the saved profile
             return user.save()
         })
